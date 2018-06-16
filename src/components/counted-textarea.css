@@ -1,0 +1,20 @@
+.counted-textarea-container {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  margin: 3px;
+}
+
+.counted-textarea-container .char-counter {
+  margin: 0px 0 2px auto;
+  border: 1px solid darkgrey;
+  font-size: .7em;
+  min-width: 60px;
+}
+
+.counted-textarea-container textarea {
+  box-sizing: border-box;
+  width: 100%;
+  height: 120px;
+  resize: none;
+}

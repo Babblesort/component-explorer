@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './counted-textarea.css';
 
 class CountedTextarea extends Component {
 
@@ -31,8 +32,8 @@ class CountedTextarea extends Component {
 
   render() {
     return (
-      <div>
-        <span>{this.state.charsRemaining}</span>
+      <div className="counted-textarea-container">
+        <span className="char-counter">{this.state.charsRemaining}</span>
         <textarea value={this.state.value} onChange={this.handleChange} />
       </div>
     );

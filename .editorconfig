@@ -4,6 +4,6 @@ root = true
 charset = utf-8
 
 # 4 space indentation
-[*.{js,json}]
+[*.{js,json,css}]
 indent_style = space
 indent_size = 2
