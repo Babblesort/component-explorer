@@ -13,8 +13,18 @@
 }
 
 .counted-textarea-container textarea {
+  resize: none;
   box-sizing: border-box;
   width: 100%;
   height: 120px;
-  resize: none;
+}
+
+.counted-textarea-container.negative .char-counter {
+  border-color: red;
+  color: red;
+}
+
+.counted-textarea-container.negative textarea {
+  border-color: red;
+  color: red;
 }

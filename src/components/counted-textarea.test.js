@@ -47,9 +47,29 @@ test('handles text changes in textarea', () => {
   expect(countedTextarea.find('textarea').text()).toEqual('');
   expect(countedTextarea.find('span').text()).toEqual('5000');
   
-  countedTextarea.find('textarea')
-    .simulate('change', { target: { value: 'new text' } });
+  countedTextarea.find('textarea').simulate('change', { target: { value: 'new text' } });
 
   expect(countedTextarea.find('textarea').text()).toEqual('new text');
   expect(countedTextarea.find('span').text()).toEqual('4992');
+});
+
+test('indicates maxChars exceeded when appropriate', () => {
+  let wrapperDiv;
+  const countedTextarea = mount(<CountedTextarea maxChars="5" />);
+
+  expect(countedTextarea.find('span.char-counter').text()).toEqual('5');
+  wrapperDiv = countedTextarea.find('div.counted-textarea-container');
+  expect(wrapperDiv.hasClass('negative')).toBe(false);
+  
+  countedTextarea.find('textarea').simulate('change', { target: { value: 'overage' } });
+
+  expect(countedTextarea.find('span.char-counter').text()).toEqual('-2');
+  wrapperDiv = countedTextarea.find('div.counted-textarea-container');
+  expect(wrapperDiv.hasClass('negative')).toBe(true);
+  
+  countedTextarea.find('textarea').simulate('change', { target: { value: 'exact' } });
+
+  expect(countedTextarea.find('span.char-counter').text()).toEqual('0');
+  wrapperDiv = countedTextarea.find('div.counted-textarea-container'); 
+  expect(wrapperDiv.hasClass('negative')).toBe(false);
 });
