@@ -7,13 +7,25 @@ class CountedTextarea extends Component {
     super(props);
     const { maxChars = 5000, value = '' } = props;
     this.maxChars = maxChars;
-    this.state = {
-      value,
-      charsRemaining: this.calculateCharsRemaining(value),
-      hasExceededMax: this.hasExceededMax(value)
-    };
-
+    this.state = this.getStateForText(value);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  render() {
+    return (
+      <div className={`counted-textarea-container ${this.state.hasExceededMax ? 'negative' : ''}`}>
+        <span className="char-counter">{this.state.charsRemaining}</span>
+        <textarea value={this.state.value} onChange={this.handleChange} />
+      </div>
+    );
+  }
+
+  getStateForText(text) {
+    return {
+      value: text,
+      charsRemaining: this.calculateCharsRemaining(text),
+      hasExceededMax: this.hasExceededMax(text)
+    }
   }
 
   hasExceededMax(text) {
@@ -29,20 +41,7 @@ class CountedTextarea extends Component {
   }
 
   handleChange(e) {
-    this.setState({ 
-      value: e.target.value,
-      charsRemaining: this.calculateCharsRemaining(e.target.value),
-      hasExceededMax: this.hasExceededMax(e.target.value)
-    });
-  }
-
-  render() {
-    return (
-      <div className={`counted-textarea-container ${this.state.hasExceededMax ? 'negative' : ''}`}>
-        <span className="char-counter">{this.state.charsRemaining}</span>
-        <textarea value={this.state.value} onChange={this.handleChange} />
-      </div>
-    );
+    this.setState(this.getStateForText(e.target.value));
   }
 }
 
