@@ -11,7 +11,7 @@ test('renders', () => {
 
 test('defaults initial state set', () => {
   const countedTextarea = mount(<CountedTextarea />);
-  console.info(countedTextarea.find('textarea').text());
+  
   expect(countedTextarea.find('span').text()).toEqual('5000');
   expect(countedTextarea.find('textarea').text()).toEqual('');
 });
