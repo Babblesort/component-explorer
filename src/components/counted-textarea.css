@@ -20,11 +20,11 @@
 }
 
 .counted-textarea-container.negative .char-counter {
-  border-color: red;
-  color: red;
+  border-color: rgb(155, 0, 0);
+  color: rgb(155, 0, 0);
 }
 
 .counted-textarea-container.negative textarea {
-  border-color: red;
-  color: red;
+  border-color: rgb(155, 0, 0);;
+  color: rgb(155, 0, 0);;
 }
