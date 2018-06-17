@@ -23,20 +23,20 @@ class CountedTextarea extends Component {
   getStateForText(text) {
     return {
       value: text,
-      charsRemaining: this.calculateCharsRemaining(text),
+      charsRemaining: this.charsRemaining(text),
       hasExceededMax: this.hasExceededMax(text)
     }
   }
 
   hasExceededMax(text) {
-    return this.calculateCharsRemaining(text) < 0;
+    return this.charsRemaining(text) < 0;
   }
 
-  calculateCharsRemaining(text) {
-    return this.maxChars - this.calculateTextLength(text);
+  charsRemaining(text) {
+    return this.maxChars - this.textLength(text);
   }
 
-  calculateTextLength(text) {
+  textLength(text) {
     return text.length;
   }
 
